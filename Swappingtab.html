@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/choccyswap.png" type="image/x-icon">
+<link rel="icon" href="./assets/choccyswap.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="assets/dashboard.css">
+    <link rel="stylesheet" href="assets/swapping.css">
+    <link rel="stylesheet" type="text/css" href="assets/liquidity.css">
+    <link rel="stylesheet" type="text/css" href="assets/farming.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.12/jquery.transit.min.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
+    </script>
+    <title>ChoccySwap || Swapping</title>
+    <style>
+        /* toggel Switch */
+
+        .tabs__control {
+            background-color: rgb(218, 227, 230);
+            border-radius: 16px;
+            display: inline-flex;
+        }
+
+        .tabs__tab {
+            -webkit-box-align: center;
+            align-items: center;
+            background-color: rgb(239, 244, 245);
+            border: 0px;
+            border-radius: 16px;
+            box-shadow: none;
+            color: rgb(135, 76, 41);
+            cursor: pointer;
+            display: inline-flex;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            width: max-content;
+            height: 40px;
+            line-height: 1;
+            letter-spacing: 0.03em;
+            -webkit-box-pack: center;
+            justify-content: center;
+            outline: 0px;
+            padding: 0px 24px;
+            transition: background-color 0.2s ease 0s;
+            opacity: 1;
+        }
+
+        .tabs__tab:not(.tabs__tab--current):hover {
+            border-color: rgba(0, 0, 0, .1);
+            background: rgba(0, 0, 0, .1);
+        }
+
+        .tabs__tab--current {
+            -webkit-box-align: center;
+            align-items: center;
+            background-color: rgb(135, 76, 41);
+            border: 0px;
+            border-radius: 16px;
+            box-shadow: none;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            display: inline-flex;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            width: max-content;
+            height: 40px;
+            line-height: 1;
+            letter-spacing: 0.03em;
+            -webkit-box-pack: center;
+            justify-content: center;
+            outline: 0px;
+            padding: 0px 24px;
+            transition: background-color 0.2s ease 0s;
+            opacity: 1;
+        }
+
+        .tabs__content {
+            display: none;
+
+        }
+
+        .tabs__content--current {
+            display: block;
+        }
+
+        .tabs__content-inner {
+            padding: 40px 0;
+        }
+
+        button:focus {
+            outline: none;
+
+        }
+
+
+        /* toggel */
+
+
+
+
+        .crawler-tabs {
+            margin: 20px 0;
+        }
+
+        .crawler-tabs li {
+            display: inline-block;
+            font-size: 0.8rem;
+            line-height: 1;
+            margin: 5px 10px;
+            padding: 10px 25px;
+            background: var(--primary-color);
+            border-radius: var(--bor-rad);
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .crawler-tabs li:hover,
+        .crawler-tabs li.active {
+            background: var(--secondary-color);
+        }
+
+        h2 {
+            font-weight: 400;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab {
+            width: 100%;
+            min-width: 320px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--bor-rad);
+            display: none;
+        }
+
+        .tab li {
+            padding-bottom: 10px;
+            list-style-type: none;
+        }
+
+        .tab li a {
+            color: var(--copy-color);
+            text-decoration: none;
+            border-bottom: 1px dotted;
+        }
+
+        .tab li a:hover {
+            color: var(--secondary-color);
+        }
+
+        dt {
+            margin-bottom: 5px;
+        }
+
+        dd {
+            display: inline-block;
+            min-width: 300px;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: var(--bor-rad);
+            background: var(--black);
+            color: var(--white);
+        }
+
+        input[type="submit"] {
+            background: var(--primary-color);
+            border: none;
+            padding: 10px 25px;
+            border-radius: var(--bor-rad);
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width:768px) {
+            .crawler-tabs li {
+                display: block;
+            }
+
+            dd {
+                width: 100%;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+          
+    <section class="header-admin-div">
+        <header>
+            <div class="main-header-div">
+             <a href="index.html">   <img class="img-fluid logo" src="./assets/choccyswap.png" style="width: 3rem;"> </a>
+                <button class="chocolate-btn" data-toggle="modal" data-target="#exampleModal">Connect</button>
+            </div>
+        </header>
+    </section>
+  
+    <div class="tabs">
+
+        <input type="radio" id="tab1" name="tab-control" checked>
+        <input type="radio" id="tab2" name="tab-control">
+        <input type="radio" id="tab3" name="tab-control">
+        <input type="radio" id="tab4" name="tab-control">
+        <ul>
+            <li title="Features"><label for="tab1" role="button"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M14,2A8,8 0 0,0 6,10A8,8 0 0,0 14,18A8,8 0 0,0 22,10H20C20,13.32 17.32,16 14,16A6,6 0 0,1 8,10A6,6 0 0,1 14,4C14.43,4 14.86,4.05 15.27,4.14L16.88,2.54C15.96,2.18 15,2 14,2M20.59,3.58L14,10.17L11.62,7.79L10.21,9.21L14,13L22,5M4.93,5.82C3.08,7.34 2,9.61 2,12A8,8 0 0,0 10,20C10.64,20 11.27,19.92 11.88,19.77C10.12,19.38 8.5,18.5 7.17,17.29C5.22,16.25 4,14.21 4,12C4,11.7 4.03,11.41 4.07,11.11C4.03,10.74 4,10.37 4,10C4,8.56 4.32,7.13 4.93,5.82Z" />
+                    </svg><br><span>Exchange</span></label></li>
+            <li title="Delivery Contents"><label for="tab2" role="button"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15.91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19.55,8.72L13.27,12.35L13.85,13.36Z" />
+                    </svg><br><span>Liquidity</span></label></li>
+            <li title="Shipping"><label for="tab3" role="button"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M3,4A2,2 0 0,0 1,6V17H3A3,3 0 0,0 6,20A3,3 0 0,0 9,17H15A3,3 0 0,0 18,20A3,3 0 0,0 21,17H23V12L20,8H17V4M10,6L14,10L10,14V11H4V9H10M17,9.5H19.5L21.47,12H17M6,15.5A1.5,1.5 0 0,1 7.5,17A1.5,1.5 0 0,1 6,18.5A1.5,1.5 0 0,1 4.5,17A1.5,1.5 0 0,1 6,15.5M18,15.5A1.5,1.5 0 0,1 19.5,17A1.5,1.5 0 0,1 18,18.5A1.5,1.5 0 0,1 16.5,17A1.5,1.5 0 0,1 18,15.5Z" />
+                    </svg><br><span>Farming</span></label></li>
+            <!-- <li title="Returns"><label for="tab4" role="button"><svg viewBox="0 0 24 24">
+                        <path
+                            d="M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,17H13V11H11V17Z" />
+                    </svg><br><span>Staking</span></label></li> -->
+        </ul>
+
+        <div class="slider">
+            <div class="indicator"></div>
+        </div>
+        <div class="content">
+            <section>
+                <h2>Exchange</h2>
+                <div class="sc-crrsfI LPUdS sc-gYhigD gdlclw">
+                    <div id="swap-page" class="sc-hkwnrn jOcitS">
+                        <div class="sc-iuAqxS cqvrXa">
+                            <div class="sc-eCssSg kZklEQ">
+                                <div class="sc-DJfgX fpDRn">
+                                    <h3 color="text" class="sc-gsTCUz sc-idOhPF gbauEu lnUPhx">Exchange</h3>
+                                    <div color="textSubtle" font-size="14px" class="sc-gsTCUz hYCJHo">Trade tokens in an
+                                        instant</div>
+                                </div><button title="Settings" class="sc-dlfnbm EiCqv sc-hKgILt fwjcww" data-toggle="modal" data-target="#exampleModalCenter"
+                                    type="button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19.43 12.98C19.47 12.66 19.5 12.34 19.5 12C19.5 11.66 19.47 11.34 19.43 11.02L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.97 19.05 5.05L16.56 6.05C16.04 5.65 15.48 5.32 14.87 5.07L14.49 2.42C14.46 2.18 14.25 2 14 2H9.99996C9.74996 2 9.53996 2.18 9.50996 2.42L9.12996 5.07C8.51996 5.32 7.95996 5.66 7.43996 6.05L4.94996 5.05C4.71996 4.96 4.45996 5.05 4.33996 5.27L2.33996 8.73C2.20996 8.95 2.26996 9.22 2.45996 9.37L4.56996 11.02C4.52996 11.34 4.49996 11.67 4.49996 12C4.49996 12.33 4.52996 12.66 4.56996 12.98L2.45996 14.63C2.26996 14.78 2.21996 15.05 2.33996 15.27L4.33996 18.73C4.45996 18.95 4.72996 19.03 4.94996 18.95L7.43996 17.95C7.95996 18.35 8.51996 18.68 9.12996 18.93L9.50996 21.58C9.53996 21.82 9.74996 22 9.99996 22H14C14.25 22 14.46 21.82 14.49 21.58L14.87 18.93C15.48 18.68 16.04 18.34 16.56 17.95L19.05 18.95C19.28 19.04 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.98ZM12 15.5C10.07 15.5 8.49996 13.93 8.49996 12C8.49996 10.07 10.07 8.5 12 8.5C13.93 8.5 15.5 10.07 15.5 12C15.5 13.93 13.93 15.5 12 15.5Z"
+                                            fill="currentColor"></path>
+                                    </svg></button>
+                                    <button title="Recent transactions" data-toggle="modal" data-target="#transactionmodal"
+                                    class="sc-dlfnbm EiCqv sc-hKgILt fwjcww" type="button"><svg width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13 3C8.03 3 4 7.03 4 12H1L4.89 15.89L4.96 16.03L9 12H6C6 8.13 9.13 5 13 5C16.87 5 20 8.13 20 12C20 15.87 16.87 19 13 19C11.07 19 9.32 18.21 8.06 16.94L6.64 18.36C8.27 19.99 10.51 21 13 21C17.97 21 22 16.97 22 12C22 7.03 17.97 3 13 3ZM12 8V13L16.28 15.54L17 14.33L13.5 12.25V8H12Z"
+                                            fill="currentColor"></path>
+                                    </svg></button>
+                            </div>
+                        </div>
+                        <div class="sc-dQppl ezBjmy">
+                            <div class="sc-aemoO hMtXtc">
+                                <div id="swap-currency-input" class="sc-dRPiIx NDJuC">
+                                    <div class="sc-hYZPRl krKWzU">
+                                        <div class="sc-bUrJUP huKpkw">
+                                            <div class="sc-dacFzL sc-jQbIHB sc-fvhGYg eJEsCB fLfbpJ kHEClt">
+                                                <div font-size="14px" color="text" class="sc-gsTCUz hEujpL"></div>
+                                            </div>
+                                        </div>
+                                        <div class="sc-iWFSnp bHLdTZ"><input class="sc-fybufo hdLlPN token-amount-input"
+                                                inputmode="decimal" title="Token Amount" autocomplete="off"
+                                                autocorrect="off" type="text" pattern="^[0-9]*[.,]?[0-9]*$"
+                                                placeholder="0.0" minlength="1" maxlength="79" spellcheck="false"
+                                                value=""><button class="sc-jLiVlK hgDKwp open-currency-select-button"
+                                                data-toggle="modal" data-target="#exampleModalCenter"><span
+                                                    class="sc-tkKAw iONwHy"><img
+                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAulBMVEUAAADvrxDvtwjvuAnxuQvwuQrwuQvwuQrwugvwugvvtwvxuAvxugvvtwjvtgrwuQvxugnwuwryuQvxuwvvugvvtQvwuQvvtwzvuQ3wuAvvvxDvuAvvuArwugvvtwrvuQrvtgvvuAzvuAvvtwvvtgvwuQvFmQvFmQwZGRAZGRELDhF+Yw5EOQ82LhDirgs2Lg9wWQ4oIxDTpAxhTg7TowsnIxBhTw59ZA6Mbg1vWQ6Lbw6Lbg1EOA////8DpA4OAAAAJXRSTlMAEEBwj6/P3++/YJ+fIFDfb69fjzAw70BQvxCQsM+gUHCQcKCQAtJYUgAAAAFiS0dEPdBtUVkAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQflARoNBydqCg4lAAADq0lEQVRo3sWabXeaMBSAg4gglrG1Vqrtttr2FgZrt6KOvf3/37UPakngJrk32LP70ZzzPOblXiCJEKTwRv44mIQRAEAUToOxP/LEqcKLZyEgMTmLkxPQ/SkYYjrQMTLS9xG8c//zIZAijZ347yMgh4NiFAIrmIrkA7DjjDHd5xE4BLkT3hgc44KUfEkIzpEShmkewYBIL63DDwPj3LL4YXD4b8w3Ggjj85gPGKU5gV98IRgundfnY1GWBMMCXa0ejU8ypFjGjYl8kuGiz4/JfJLhnD8BLZ9i6E3DGYdPMQTMAVL5FEOmCEImn2BIOR3o8wkGn94BjG83LDxqB3C+3eATO6DjWw2vs3DlyLcajgspYPCrimGYHpKYwwfgGDzrFPf5LMN+mpc8PscwtYwQzucYPPMIfcX5XcOTnhCb6+jzNwnzXW6RDS+1njATQkyAZNioLRWJD6kQK2OqvBo23ZaKwgfwxAgohk2/paLwIRM++vtWNbT87VYxSPytJhOu8fW5kQ0Sf/ciGyT+D3y1XqOF6LGQ//RzI/HLUjL8lPiafLjB8nifX8iwb3dlqRhkPm74iDwLjvn7C+djhkab06mI9PWhwfl9Q6OvGgthqj8Nzu8aGlNdEsb61uB81dAYK19XkBea+larglpT+QqbQDFUcoNsUPO3MvChP8mtoVIbWkO3PlR6/gJZpkdD1W04Gvr1p9LxIcWqda5LtL0Bq2+Vhg9TtFTkSqnY/lYMEv+PUvkKvFSgxS4v5PomrdZ6J/EbebVWhabY4eW6Vte/ZKiV9S8Zak25ziwPnB1WNdr8etnaHjiWR+YTXpfa/LUYPPOr9Su/Z2jKkmL4KIT4ROJ3DE1Zkgwz84vX31JT+RrOi5dhEtTK1xpUfmF4dUwsL7+4gc7ffyD4wDPQ+bDf6DQu1L6BwYfDfsKSY+Dwbw7faOZkzg0fgWY+fKZ9xuoNBfEz1jjNBoOFD+1e9ipyMdj48m7ILfANNj7EnO2cvqFgbefYngp9g5UPndOEgGew82fdTcGIY7Dz+ycJ9m3N1mDnA3LcsiYbCPw1svO7ComGwnFrmTANkBc0fuK8vZ8XBD7MdQcIMcFA4BvO027hBHFnOsS5fWM+aZScx+cw0+EQfDT//0eNQqzWrvw19aZC7NSJiHFmndzz+QHvfgK3E2nGPtXnKKI7p3sJVEXqO19DuQrs+GUmhkQSG99cl/4J7tAk8T26eRvO4hPe0Mn8h2B5vP4zCR78jAj/BxvHMSB40+znAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTAxLTI2VDEzOjA0OjUyKzAwOjAwvapJxgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wMS0yNlQxMzowNDo1MiswMDowMMz38XoAAAAASUVORK5CYII="
+                                                        class="sc-fWPcDo kUFaZj" style="margin-right: 8px;">
+                                                    <div color="text" class="sc-gsTCUz jqZDWZ">BNB</div><svg
+                                                        viewBox="0 0 24 24" color="text" width="20px"
+                                                        xmlns="http://www.w3.org/2000/svg" class="sc-bdfBwQ iksKBI">
+                                                        <path
+                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                        </path>
+                                                    </svg>
+                                                </span></button></div>
+                                    </div>
+                                </div>
+                                <div class="sc-aemoO WypEE">
+                                    <div class="sc-dacFzL sc-jQbIHB sc-GTWni eJEsCB fLfbpJ ILfeX"
+                                        style="padding: 0px 1rem;">
+                                        <div class="sc-bSFVuW jyABpM"><button class="sc-dlfnbm hqwVrv sc-hKgILt fwjcqd"
+                                                type="button" style="border-radius: 50%;"><svg viewBox="0 0 24 25"
+                                                    color="primary" width="24px" xmlns="http://www.w3.org/2000/svg"
+                                                    class="sc-bdfBwQ kGvaiT">
+                                                    <path
+                                                        d="M11 5V16.17L6.11997 11.29C5.72997 10.9 5.08997 10.9 4.69997 11.29C4.30997 11.68 4.30997 12.31 4.69997 12.7L11.29 19.29C11.68 19.68 12.31 19.68 12.7 19.29L19.29 12.7C19.68 12.31 19.68 11.68 19.29 11.29C18.9 10.9 18.27 10.9 17.88 11.29L13 16.17V5C13 4.45 12.55 4 12 4C11.45 4 11 4.45 11 5Z">
+                                                    </path>
+                                                </svg></button></div>
+                                    </div>
+                                </div>
+                                <div id="swap-currency-output" class="sc-dRPiIx NDJuC">
+                                    <div class="sc-hYZPRl krKWzU">
+                                        <div class="sc-bUrJUP huKpkw">
+                                            <div class="sc-dacFzL sc-jQbIHB sc-fvhGYg eJEsCB fLfbpJ kHEClt">
+                                                <div font-size="14px" color="text" class="sc-gsTCUz hEujpL"></div>
+                                            </div>
+                                        </div>
+                                        <div class="sc-iWFSnp bHLdTZ"><input class="sc-fybufo hdLlPN token-amount-input"
+                                                inputmode="decimal" title="Token Amount" autocomplete="off"
+                                                autocorrect="off" type="text" pattern="^[0-9]*[.,]?[0-9]*$"
+                                                placeholder="0.0" minlength="1" maxlength="79" spellcheck="false"
+                                                value=""><button
+                                                class="sc-jLiVlK eKSWDJ open-currency-select-button"><span
+                                                    class="sc-tkKAw iONwHy">
+                                                    <div color="text" class="sc-gsTCUz jqZDWZ" data-toggle="modal"
+                                                        data-target="#exampleModalCenter">Select a currency</div><svg
+                                                        viewBox="0 0 24 24" color="text" width="20px"
+                                                        xmlns="http://www.w3.org/2000/svg" class="sc-bdfBwQ iksKBI">
+                                                        <path
+                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                        </path>
+                                                    </svg>
+                                                </span></button></div>
+                                    </div>
+                                </div>
+                                <div class="sc-XhUPp ezkaCf">
+                                    <div class="sc-aemoO kAkSNn"></div>
+                                </div>
+                            </div>
+                            <div class="sc-edoZmE hyACfo"><button type="button" class="sc-dlfnbm bvZeQR">Unlock
+                                    Wallet</button></div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section>
+                <h2>Liquidity</h2>
+                <div class="sc-crrsfI LPUdS sc-gYhigD gdlclw">
+                    <div class="sc-iuAqxS cqvrXa">
+                        <div class="sc-eCssSg kZklEQ">
+                            <div class="sc-DJfgX fpDRn">
+                                <h2 color="text" class="sc-gsTCUz sc-idOhPF gbauEu lnUPhx">Liquidity</h2>
+                                <div color="textSubtle" font-size="14px" class="sc-gsTCUz hYCJHo">Add liquidity to
+                                    receive LP tokens</div>
+                            </div><button title="Settings" class="sc-dlfnbm EiCqv sc-hKgILt fwjcww" data-toggle="modal" data-target="#exampleModalCenter" type="button"><svg
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.43 12.98C19.47 12.66 19.5 12.34 19.5 12C19.5 11.66 19.47 11.34 19.43 11.02L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.97 19.05 5.05L16.56 6.05C16.04 5.65 15.48 5.32 14.87 5.07L14.49 2.42C14.46 2.18 14.25 2 14 2H9.99996C9.74996 2 9.53996 2.18 9.50996 2.42L9.12996 5.07C8.51996 5.32 7.95996 5.66 7.43996 6.05L4.94996 5.05C4.71996 4.96 4.45996 5.05 4.33996 5.27L2.33996 8.73C2.20996 8.95 2.26996 9.22 2.45996 9.37L4.56996 11.02C4.52996 11.34 4.49996 11.67 4.49996 12C4.49996 12.33 4.52996 12.66 4.56996 12.98L2.45996 14.63C2.26996 14.78 2.21996 15.05 2.33996 15.27L4.33996 18.73C4.45996 18.95 4.72996 19.03 4.94996 18.95L7.43996 17.95C7.95996 18.35 8.51996 18.68 9.12996 18.93L9.50996 21.58C9.53996 21.82 9.74996 22 9.99996 22H14C14.25 22 14.46 21.82 14.49 21.58L14.87 18.93C15.48 18.68 16.04 18.34 16.56 17.95L19.05 18.95C19.28 19.04 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.98ZM12 15.5C10.07 15.5 8.49996 13.93 8.49996 12C8.49996 10.07 10.07 8.5 12 8.5C13.93 8.5 15.5 10.07 15.5 12C15.5 13.93 13.93 15.5 12 15.5Z"
+                                        fill="currentColor"></path>
+                                </svg></button><button title="Recent transactions" data-toggle="modal" data-target="#transactionmodal"
+                                
+                                class="sc-dlfnbm EiCqv sc-hKgILt fwjcww" type="button"><svg width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13 3C8.03 3 4 7.03 4 12H1L4.89 15.89L4.96 16.03L9 12H6C6 8.13 9.13 5 13 5C16.87 5 20 8.13 20 12C20 15.87 16.87 19 13 19C11.07 19 9.32 18.21 8.06 16.94L6.64 18.36C8.27 19.99 10.51 21 13 21C17.97 21 22 16.97 22 12C22 7.03 17.97 3 13 3ZM12 8V13L16.28 15.54L17 14.33L13.5 12.25V8H12Z"
+                                        fill="currentColor"></path>
+                                </svg></button>
+                        </div>
+                        <div color="text" class="sc-gsTCUz fXxELX"><a id="join-pool-button" variant="primary"
+                                type="button" class="sc-dlfnbm gdIOfZ" href="#/add/ETH" data-toggle="modal"
+                                data-target="##exampleModal">Add Liquidity</a></div>
+                    </div>
+                    <div class="sc-aemoO hJLLNK">
+                        <div class="sc-dQppl ezBjmy">
+                            <div class="sc-aemoO hMtXtc" style="width: 100%;">
+                                <div class="sc-dacFzL sc-jQbIHB sc-fvhGYg ilmkPN gKuQWF kHEClt">
+                                    <div color="#000000" class="sc-gsTCUz jqZDWZ">Your Liquidity</div><span
+                                        style="margin-left: 4px;">
+                                        <div class="sc-dUrnRO AXFeE">
+                                            <div class="sc-hjWSAi cytcfT"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                                </svg></div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="sc-XhUPp sc-ikPAkQ bUHUNe bWNYkD">
+                                    <div color="#BDC2C4" class="sc-gsTCUz dcRinF">Connect to a wallet to view your
+                                        liquidity.</div>
+                                </div>
+                                <div>
+                                    <div font-size="14px" color="text" class="sc-gsTCUz hEujpL"
+                                        style="padding: 0.5rem 0px;"> <a id="import-pool-link" class="sc-bTvRPi bvaqgS"
+                                            href="#/find"></a></div>
+                                    <div font-size="14px" color="text" class="sc-gsTCUz hEujpL"
+                                        style="padding: 0.5rem 0px;">Or, if you staked your LP tokens in a farm, unstake
+                                        them to see them here.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Farming</h2>
+                <div class="sc-crzoAE cGrSmI">
+                    <div class="sc-dIsUp fyMqHM main-banner-div">
+                        <h1 color="white" class="sc-gtsrHT sc-iemWCZ lhAASx dfWfAS"
+                            style="text-align: center; padding: 5%;">Stake LP tokens to earn CHOCCY</h1>
+                    </div>
+                    <div class="MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiStepper-alternativeLabel MuiPaper-elevation0"
+                        style="background: white; padding: 5% 1%;">
+                        <div class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel MuiStep-completed"><span
+                                class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel"><span
+                                    class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel"><svg
+                                        class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-active MuiStepIcon-completed"
+                                        focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z">
+                                        </path>
+                                    </svg></span><span class="MuiStepLabel-labelContainer"><span
+                                        class="MuiTypography-root MuiStepLabel-label MuiStepLabel-alternativeLabel MuiStepLabel-completed MuiStepLabel-active MuiTypography-body2 MuiTypography-displayBlock"><a
+                                            class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0"
+                                            aria-disabled="false" href="https://dex.cafeswap.finance/"
+                                            style="text-transform: none;"><span class="MuiButton-label">
+                                                <div font-size="14px" color="text" class="sc-gtsrHT hQvqZk">Go to Swapping
+                                                </div>
+                                            </span><span class="MuiTouchRipple-root"></span></a></span></span></span>
+                        </div>
+                        <div class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel MuiStep-completed">
+                            <div
+                                class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel MuiStepConnector-completed">
+                                <span class="MuiStepConnector-line MuiStepConnector-lineHorizontal"></span></div><span
+                                class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel"><span
+                                    class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel"><svg
+                                        class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed" focusable="false"
+                                        viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z">
+                                        </path>
+                                    </svg></span><span class="MuiStepLabel-labelContainer"><span
+                                        class="MuiTypography-root MuiStepLabel-label MuiStepLabel-alternativeLabel MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"><a
+                                            class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0"
+                                            aria-disabled="false" href="https://dex.cafeswap.finance/#/add/ETH"
+                                            style="text-transform: none;"><span class="MuiButton-label">
+                                                <div font-size="14px" color="text" class="sc-gtsrHT hQvqZk">Add
+                                                    Liquidity</div>
+                                            </span><span class="MuiTouchRipple-root"></span></a></span></span></span>
+                        </div>
+                        <div class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel MuiStep-completed">
+                            <div
+                                class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel MuiStepConnector-completed">
+                                <span class="MuiStepConnector-line MuiStepConnector-lineHorizontal"></span></div><span
+                                class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel"><span
+                                    class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel"><svg
+                                        class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed" focusable="false"
+                                        viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z">
+                                        </path>
+                                    </svg></span><span class="MuiStepLabel-labelContainer"><span
+                                        class="MuiTypography-root MuiStepLabel-label MuiStepLabel-alternativeLabel MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"><button
+                                            class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0"
+                                            type="button" style="text-transform: none;"><span class="MuiButton-label">
+                                                <div font-size="14px" color="text" class="sc-gtsrHT hQvqZk">Stake LP in
+                                                    farms</div>
+                                            </span><span
+                                                class="MuiTouchRipple-root"></span></button></span></span></span>
+                        </div>
+                        <div class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel MuiStep-completed">
+                            <div
+                                class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel MuiStepConnector-completed">
+                                <span class="MuiStepConnector-line MuiStepConnector-lineHorizontal"></span></div><span
+                                class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel"><span
+                                    class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel"><svg
+                                        class="MuiSvgIcon-root MuiStepIcon-root MuiStepIcon-completed" focusable="false"
+                                        viewBox="0 0 24 24" aria-hidden="true">
+                                        <path
+                                            d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm-2 17l-5-5 1.4-1.4 3.6 3.6 7.6-7.6L19 8l-9 9z">
+                                        </path>
+                                    </svg></span><span class="MuiStepLabel-labelContainer"><span
+                                        class="MuiTypography-root MuiStepLabel-label MuiStepLabel-alternativeLabel MuiStepLabel-completed MuiTypography-body2 MuiTypography-displayBlock"><button
+                                            class="MuiButtonBase-root MuiButton-root MuiButton-text" tabindex="0"
+                                            type="button" style="text-transform: none;"><span class="MuiButton-label">
+                                                <div font-size="14px" color="text" class="sc-gtsrHT hQvqZk">Earn CHOOCY
+                                                </div>
+                                            </span><span
+                                                class="MuiTouchRipple-root"></span></button></span></span></span>
+                        </div>
+                    </div>
+                </div>
+            
+
+                <div class="sc-ljRboo eFBfDe mt-5">
+                    <div class="sc-jmhFOf fFGAIg">
+              
+     
+                     
+                        <div class="main-work-div">
+
+
+                            <div role="tablist" class="tabs__control">
+                                <button data-tab="1" role="tab" aria-selected="true" aria-controls="tab-1"
+                                    class="tabs__tab tabs__tab--current">Active</button>
+                                <button data-tab="2" role="tab" aria-selected="false" aria-controls="tab-2"
+                                    class="tabs__tab" tabindex="-1">Inactive</button>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="tabs__contents">
+                        <div data-tab-content="1" role="tabpanel" tabindex="0" id="tab-1"
+                            class="tabs__content tabs__content--current">
+
+                            <div class="tabs__content-inner">
+                                <div class="sc-dUrnRO cQMWtJ"></div>
+                                <div class="container main-card-cake">
+                                    <div class="row" value='Show' id="panel">
+                                        <div class="col-lg-4" style="">
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseFour"
+                                                                    aria-expanded="false" aria-controls="collapseFour">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseFour" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-4" style="">
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseOne"
+                                                                    aria-expanded="false" aria-controls="collapseOne">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseOne" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-4" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseTwo"
+                                                                    aria-expanded="false" aria-controls="collapseTwo">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseTwo" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-4 mt-5" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseThree"
+                                                                    aria-expanded="false" aria-controls="collapse#collapseThree">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseThree" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-lg-4 mt-5" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseTen"
+                                                                    aria-expanded="false" aria-controls="collapseTen">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseTen" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-4 mt-5" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseNine"
+                                                                    aria-expanded="false" aria-controls="collapseNine">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseNine" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-lg-4 mt-5" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseSeven"
+                                                                    aria-expanded="false" aria-controls="collapseSeven">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseSeven" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="col-lg-4 mt-5" >
+                                            <div class="main-card-div">
+                                                <div class="first-col-div">
+                                                    <div class="first-content">
+                                                        <span class="inner-text-first">COCCY LP</span>
+                                                    </div>
+                                                    <div class="sec-content">
+                                                        <svg class="MuiSvgIcon-root MuiChip-avatar MuiChip-avatarSmall"
+                                                            focusable="false" viewBox="0 0 24 24" aria-hidden="true"
+                                                            style="color: #3f000f;">
+                                                            <path
+                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z">
+                                                            </path>
+                                                        </svg>
+                                                        <span class="innner-sec-text">Core</span>
+                                                    </div>
+
+                                                    <div class="thired-content">
+
+                                                        <span class="">50X</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sec-part-div">
+                                                    <div class="two-img-div">
+                                                        <div class="first-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/choccyswap.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                        <div class="sec-img-circle">
+                                                            <img class="img-fluid logo" src="./assets/bnb.png"
+                                                                style="width: 3rem;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="sec-text-inner">
+                                                        <span>
+                                                            BREW-BNB CAFE LP
+                                                        </span>
+                                                    </div>
+                                                    <div class="total-text-inner">
+                                                        <span>
+                                                            Total Liquidity : $17,275
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="four-sec-part">
+                                                    <div>
+                                                        <div class="month-text">APR</div>
+                                                        <div class="number-text">
+                                                            160.63%
+                                                            <button
+                                                                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall">
+                                                                <span class="MuiIconButton-label">
+                                                                    <svg class="MuiSvgIcon-root" focusable="false"
+                                                                        viewBox="0 0 24 24" aria-hidden="true"
+                                                                        style="color: orange;">
+                                                                        <path
+                                                                            d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </span>
+                                                                <span class="MuiTouchRipple-root"></span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="month-text">EARN</div>
+                                                        <div class="number-text">
+                                                            BREW
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="fifth-sec-part pt-3">
+                                                    <div class="inner-fifth-text d-flex">
+                                                        <div class="hWcyKu">BREW EARNED</div>
+                                                    </div>
+                                                </div>
+                                                <div class="sc-eCApnc kDFQxZ">
+                                                    <span color="textDisabled"
+                                                        class="sc-gtsrHT sc-iemWCZ jkGbed hFHseq">0</span><button
+                                                        disabled="" type="button"
+                                                        class="sc-dlnjwi jKFuSn">Harvest</button>
+                                                </div>
+                                                <div class="sc-eCApnc btdohk">
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT gCegDo">
+                                                        BREW-BNB CAFE LP</div>
+                                                    <div color="#ff5b78" font-size="12px" class="sc-gtsrHT hWMNmu">
+                                                        Staked</div>
+                                                </div>
+                                                <button type="button" class="sc-dlnjwi fhnWtu">Unlock Wallet</button>
+                                                <div class="sc-kYPZxB hCALar"></div>
+                                                <div id="accordion main-card-acc">
+
+                                                    <div class="card coll-card-div">
+                                                        <div class="card-header" id="headingTwo">
+                                                            <h5 class="mb-0 d-flex justify-content-center">
+                                                                <button class="btn btn-link collapsed"
+                                                                    data-toggle="collapse" data-target="#collapseSix"
+                                                                    aria-expanded="false" aria-controls="collapseSix">
+                                                                    Details <svg viewBox="0 0 24 24" color="text"
+                                                                        width="20px" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="sc-bdnxRM eUMSBu">
+                                                                        <path
+                                                                            d="M8.11997 9.29006L12 13.1701L15.88 9.29006C16.27 8.90006 16.9 8.90006 17.29 9.29006C17.68 9.68006 17.68 10.3101 17.29 10.7001L12.7 15.2901C12.31 15.6801 11.68 15.6801 11.29 15.2901L6.69997 10.7001C6.30997 10.3101 6.30997 9.68006 6.69997 9.29006C7.08997 8.91006 7.72997 8.90006 8.11997 9.29006Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </button>
+                                                            </h5>
+
+                                                        </div>
+                                                        <div id="collapseSix" class="collapse"
+                                                            aria-labelledby="headingTwo" data-parent="#accordion">
+                                                            <div class="card-body">
+                                                                <div class="sc-xGAEC crFllh">
+                                                                    <div class="sc-jUfyBS eSyZIh">
+                                                                        <div class="sc-eCApnc iuzGCo">
+                                                                            <div color="black" class="sc-gtsrHT cwaUwT">
+                                                                                Stake:</div><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw sc-jQAxuV jEJAbe"
+                                                                                color="primary">BREW-BNB CAFE LP<svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    href="https://dex.cafeswap.finance/#/add/ETH/0x790Be81C3cA0e53974bE2688cDb954732C9862e1"
+                                                                                    class="sc-bdnxRM fMrqES sc-jQAxuV jEJAbe"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a>
+                                                                        </div>
+                                                                        <div class="sc-eCApnc ekMuOO"><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                href="https://bscscan.com/address/0x4D1f8F8E579096097809D439d6707f2F5870652A"
+                                                                                color="brown"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPWrW hpRDUw">View
+                                                                                on BscScan</a><a target="_blank"
+                                                                                rel="noreferrer noopener"
+                                                                                color="primary"
+                                                                                class="sc-gtsrHT sc-lmgQwP gdPVEE hpRDUw"><svg
+                                                                                    viewBox="0 0 24 24" color="black"
+                                                                                    width="20px"
+                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                    class="sc-bdnxRM fMrqES">
+                                                                                    <path
+                                                                                        d="M18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H11C11.55 5 12 4.55 12 4C12 3.45 11.55 3 11 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V13C21 12.45 20.55 12 20 12C19.45 12 19 12.45 19 13V18C19 18.55 18.55 19 18 19ZM14 4C14 4.55 14.45 5 15 5H17.59L8.46 14.13C8.07 14.52 8.07 15.15 8.46 15.54C8.85 15.93 9.48 15.93 9.87 15.54L19 6.41V9C19 9.55 19.45 10 20 10C20.55 10 21 9.55 21 9V4C21 3.45 20.55 3 20 3H15C14.45 3 14 3.45 14 4Z">
+                                                                                    </path>
+                                                                                </svg></a></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-lg-12 d-flex justify-content-center" href="#tab-2">
+                                            <div class="chocolate-image">
+                                                <img src="assets/icon/giphy.webp" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div data-tab-content="2" role="tabpanel" tabindex="0" id="tab-2" class="tabs__content" hidden>
+
+                            <div class="tabs__content-inner">
+
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="sc-dUrnRO cQMWtJ"></div>
+                                        <div class="col-lg-12 d-flex justify-content-center" href="#tab-2">
+
+                                            <div class="chocolate-image">
+                                                <img src="assets/icon/giphy.webp" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Staking</h2>
+                <p>fesfefffsfffsfs</p>
+            </section>
+
+
+
+
+        </div>
+
+        </section>
+
+    </div>
+    </div>
+        <!-- Modal transaction -->
+
+        <div class="modal fade transaction-modal" id="transactionmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+              <div class="modal-content swapping-modal-div-2">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Recent Transactions</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body sc-gGTGfU transaction-body">
+                    <div class="sc-eCssSg clfSey"><div class="sc-eCssSg eCa-DTg"><div color="text" class="sc-gsTCUz cNdzyz">Please connect your wallet to view your recent transactions</div><button type="button" class="sc-dlfnbm kxECIe">Close</button></div></div>
+                </div>
+            
+              </div>
+            </div>
+          </div>
+
+           <!-- Modal Setting -->
+           <div class="modal fade  swapping-modal-div-main" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+              <div class="modal-content swapping-modal-div">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle" style="color: rgb(135, 76, 41);">Settings</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <div class="sc-eCssSg clfSey"><div class="sc-JooDp huvkpK"><div class="sc-dcwrBW vDTBn"><div color="text" class="sc-gsTCUz btGNko" style="font-weight: 600;">Slippage tolerance</div><span style="margin-left: 4px;"><div class="sc-httYMd eunqYU"><div class="sc-gVgnHT fkOavP"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div></div></span></div><div class="sc-iumJyn ta-dtM"><div class="sc-eCssSg EgtxH"><div class="sc-gGTGfU fSjCQg"><button type="button" class="sc-dlfnbm jrcede">0.1%</button></div><div class="sc-gGTGfU fSjCQg"><button type="button" class="sc-dlfnbm jrcede">0.5%</button></div><div class="sc-gGTGfU fSjCQg"><button type="button" class="sc-dlfnbm jrcede">1%</button></div></div><div class="sc-eCssSg kZklEQ"><div class="sc-gGTGfU fSjCQg"><input type="number" scale="lg" step="0.1" min="0.1" placeholder="5%" class="sc-kfzAmx jqZndD" value="0.8"></div><div class="sc-gGTGfU fSjCQg"><div font-size="18px" color="text" class="sc-gsTCUz cpvDJC">%</div></div></div></div></div><div class="sc-ehsPrw conNwD"><div class="sc-hFXnzx fjFzkC"><div color="text" class="sc-gsTCUz btGNko" style="font-weight: 600;">Transaction deadline</div><span style="margin-left: 4px;"><div class="sc-httYMd eunqYU"><div class="sc-gVgnHT fkOavP"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div></div></span></div><div class="sc-iuAqxS kanDXL"><input type="number" step="1" min="1" scale="md" class="sc-kfzAmx iWWMUj" value="20"><div color="text" class="sc-gsTCUz btGNko">Minutes</div></div></div></div>
+                </div>
+        
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Modal connect -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                          Connect to a wallet</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="main-innner-div">
+                          <p class="wallet-name"> Metamask</p>
+                          <svg viewBox="0 0 96 96" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <circle cx="48" cy="48" r="48" fill="white"></circle>
+                              <path d="M77.7602 16.9155L51.9419 36.0497L56.7382 24.7733L77.7602 16.9155Z" fill="#E17726">
+                              </path>
+                              <path d="M18.2656 16.9155L43.8288 36.2283L39.2622 24.7733L18.2656 16.9155Z" fill="#E27625">
+                              </path>
+                              <path d="M68.4736 61.2808L61.6108 71.7918L76.3059 75.8482L80.4899 61.5104L68.4736 61.2808Z"
+                                  fill="#E27625"></path>
+                              <path d="M15.5356 61.5104L19.6941 75.8482L34.3892 71.7918L27.5519 61.2808L15.5356 61.5104Z"
+                                  fill="#E27625"></path>
+                              <path d="M33.5984 43.5251L29.491 49.699L44.0584 50.3624L43.5482 34.6724L33.5984 43.5251Z"
+                                  fill="#E27625"></path>
+                              <path d="M62.4274 43.525L52.2991 34.4937L51.9419 50.3622L66.5094 49.6989L62.4274 43.525Z"
+                                  fill="#E27625"></path>
+                              <path d="M34.3892 71.7922L43.1654 67.5316L35.6137 61.6128L34.3892 71.7922Z" fill="#E27625">
+                              </path>
+                              <path d="M52.8345 67.5316L61.6107 71.7922L60.3861 61.6128L52.8345 67.5316Z" fill="#E27625">
+                              </path>
+                              <path d="M61.6107 71.7923L52.8345 67.5317L53.5233 73.2465L53.4468 75.6446L61.6107 71.7923Z"
+                                  fill="#D5BFB2"></path>
+                              <path d="M34.3892 71.7923L42.5531 75.6446L42.502 73.2465L43.1654 67.5317L34.3892 71.7923Z"
+                                  fill="#D5BFB2"></path>
+                              <path d="M42.7062 57.8369L35.4097 55.6939L40.5631 53.3213L42.7062 57.8369Z" fill="#233447">
+                              </path>
+                              <path d="M53.2937 57.8369L55.4367 53.3213L60.6412 55.6939L53.2937 57.8369Z" fill="#233447">
+                              </path>
+                              <path d="M34.3893 71.7918L35.6649 61.2808L27.552 61.5104L34.3893 71.7918Z" fill="#CC6228">
+                              </path>
+                              <path d="M60.3352 61.2808L61.6108 71.7918L68.4736 61.5104L60.3352 61.2808Z" fill="#CC6228">
+                              </path>
+                              <path
+                                  d="M66.5094 49.6987L51.9419 50.362L53.294 57.8371L55.4371 53.3215L60.6416 55.6941L66.5094 49.6987Z"
+                                  fill="#CC6228"></path>
+                              <path
+                                  d="M35.4098 55.6941L40.5633 53.3215L42.7063 57.8371L44.0584 50.362L29.491 49.6987L35.4098 55.6941Z"
+                                  fill="#CC6228"></path>
+                              <path d="M29.491 49.6987L35.6139 61.6129L35.4098 55.6941L29.491 49.6987Z" fill="#E27525">
+                              </path>
+                              <path d="M60.6414 55.6941L60.3862 61.6129L66.5092 49.6987L60.6414 55.6941Z" fill="#E27525">
+                              </path>
+                              <path d="M44.0584 50.3618L42.7063 57.8369L44.4156 66.6641L44.7728 55.0305L44.0584 50.3618Z"
+                                  fill="#E27525"></path>
+                              <path d="M51.9415 50.3618L51.2527 55.005L51.5843 66.6641L53.2937 57.8369L51.9415 50.3618Z"
+                                  fill="#E27525"></path>
+                              <path
+                                  d="M53.2938 57.8374L51.5845 66.6646L52.8346 67.532L60.3862 61.6132L60.6413 55.6943L53.2938 57.8374Z"
+                                  fill="#F5841F"></path>
+                              <path
+                                  d="M35.4097 55.6943L35.6138 61.6132L43.1654 67.532L44.4155 66.6646L42.7062 57.8374L35.4097 55.6943Z"
+                                  fill="#F5841F"></path>
+                              <path
+                                  d="M53.4468 75.6443L53.5233 73.2462L52.8855 72.6849H43.1143L42.502 73.2462L42.5531 75.6443L34.3892 71.792L37.2465 74.1391L43.0378 78.1445H52.962L58.7533 74.1391L61.6107 71.792L53.4468 75.6443Z"
+                                  fill="#C0AC9D"></path>
+                              <path
+                                  d="M52.8346 67.5315L51.5845 66.6641H44.4156L43.1655 67.5315L42.5022 73.2462L43.1145 72.6849H52.8857L53.5235 73.2462L52.8346 67.5315Z"
+                                  fill="#161616"></path>
+                              <path
+                                  d="M78.8314 37.2998L80.9999 26.7377L77.7599 16.9155L52.8345 35.4119L62.4271 43.5247L75.9485 47.4791L78.9335 43.984L77.6323 43.04L79.7243 41.1521L78.1426 39.902L80.2091 38.3458L78.8314 37.2998Z"
+                                  fill="#763E1A"></path>
+                              <path
+                                  d="M15 26.7377L17.194 37.2998L15.7909 38.3458L17.8574 39.902L16.2756 41.1521L18.3676 43.04L17.0665 43.984L20.0514 47.4791L33.5984 43.5247L43.1655 35.4119L18.2656 16.9155L15 26.7377Z"
+                                  fill="#763E1A"></path>
+                              <path
+                                  d="M75.9487 47.4793L62.4272 43.5249L66.5092 49.6989L60.3862 61.613L68.4736 61.511H80.4898L75.9487 47.4793Z"
+                                  fill="#F5841F"></path>
+                              <path
+                                  d="M33.5983 43.5249L20.0513 47.4793L15.5356 61.511H27.5519L35.6137 61.613L29.4908 49.6989L33.5983 43.5249Z"
+                                  fill="#F5841F"></path>
+                              <path
+                                  d="M51.9415 50.3617L52.8344 35.4115L56.7378 24.7729H39.262L43.1653 35.4115L44.0583 50.3617L44.3899 55.0559L44.4154 66.664H51.5843L51.6099 55.0559L51.9415 50.3617Z"
+                                  fill="#F5841F"></path>
+                          </svg>
+                      </div>
+  
+                      <div class="main-innner-div">
+                          <p class="wallet-name"> Trustwallet</p>
+                          <svg viewBox="0 0 96 96" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <g clip-path="url(#clip0)">
+                                  <path
+                                      d="M48.0048 96.0097C74.5172 96.0097 96.0097 74.5172 96.0097 48.0048C96.0097 21.4925 74.5172 0 48.0048 0C21.4925 0 0 21.4925 0 48.0048C0 74.5172 21.4925 96.0097 48.0048 96.0097Z"
+                                      fill="#3375BB"></path>
+                                  <path
+                                      d="M48.0048 22.8922L49.3179 21.1833C48.9399 20.8928 48.4766 20.7354 48 20.7354C47.5233 20.7354 47.06 20.8928 46.682 21.1833L48.0048 22.8922ZM70.5783 29.5252H72.7313C72.7352 29.2396 72.6824 28.9561 72.576 28.6909C72.4696 28.4258 72.3118 28.1844 72.1116 27.9806C71.9114 27.7769 71.6729 27.6148 71.4097 27.5037C71.1465 27.3926 70.8639 27.3348 70.5783 27.3335V29.5252ZM48.0048 75.6377L46.8076 77.4335C47.1604 77.6697 47.5754 77.7958 48 77.7958C48.4245 77.7958 48.8395 77.6697 49.1924 77.4335L48.0048 75.6377ZM25.4506 29.5252V27.3625C25.165 27.3638 24.8824 27.4216 24.6192 27.5327C24.356 27.6437 24.1175 27.8058 23.9173 28.0096C23.7171 28.2134 23.5593 28.4548 23.4529 28.7199C23.3465 28.985 23.2937 29.2686 23.2976 29.5542L25.4506 29.5252ZM46.6917 24.5915C56.4626 32.1611 67.6528 31.6783 70.5879 31.6783V27.3625C67.5466 27.3625 57.8047 27.7487 49.3468 21.1833L46.6917 24.5915ZM68.4348 29.4866C68.2707 39.4892 67.8459 46.5471 67.0349 51.7704C66.2238 56.9938 65.1039 60.0448 63.6266 62.2268C62.1494 64.4089 60.257 65.8282 57.486 67.4792C54.715 69.1302 51.1716 70.9646 46.8076 73.8515L49.2406 77.4335C53.373 74.6818 56.8102 72.9246 59.7357 71.1771C62.6835 69.5717 65.2416 67.3367 67.228 64.6309C69.159 61.7344 70.4817 57.8724 71.3314 52.427C72.181 46.9815 72.6155 39.6534 72.7796 29.5542L68.4348 29.4866ZM49.2406 73.8515C44.9055 70.955 41.3718 69.1592 38.6201 67.4888C35.8684 65.8185 33.976 64.4861 32.4892 62.2268C31.0023 59.9676 29.7954 56.9648 28.9651 51.7704C28.1347 46.576 27.7678 39.4892 27.6037 29.4866L23.2976 29.5542C23.4617 39.6534 23.9058 47.0009 24.7458 52.427C25.5858 57.8531 26.8699 61.7151 28.8395 64.6309C30.8164 67.3382 33.3686 69.5739 36.3125 71.1771C39.2091 72.9246 42.6752 74.6818 46.8076 77.4335L49.2406 73.8515ZM25.4506 31.6783C28.3471 31.6783 39.547 32.1611 49.3179 24.5915L46.682 21.1833C38.2049 27.7487 28.463 27.3625 25.441 27.3625L25.4506 31.6783Z"
+                                      fill="white"></path>
+                              </g>
+                              <defs>
+                                  <clipPath id="clip0">
+                                      <rect width="96" height="96" fill="white"></rect>
+                                  </clipPath>
+                              </defs>
+                          </svg>
+                      </div>
+                      <div class="main-innner-div">
+                          <p class="wallet-name"> Mathwallet</p>
+                          <svg viewBox="0 0 96 96" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <circle cx="48" cy="48" r="48" fill="white"></circle>
+                              <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M66.4573 43.7107C64.8919 42.1452 64.8919 39.6071 66.4573 38.0416C68.0228 36.4762 70.5609 36.4762 72.1264 38.0416C73.6918 39.6071 73.6918 42.1452 72.1264 43.7107C70.5609 45.2762 68.0228 45.2762 66.4573 43.7107ZM52.9933 57.1747C51.8192 56.0006 51.8192 54.097 52.9933 52.9229C54.1674 51.7488 56.071 51.7488 57.2451 52.9229C58.4192 54.097 58.4192 56.0006 57.2451 57.1747C56.071 58.3488 54.1674 58.3488 52.9933 57.1747ZM74.2523 50.0884C73.0782 48.9143 73.0782 47.0107 74.2523 45.8366C75.4263 44.6625 77.3299 44.6625 78.504 45.8366C79.6781 47.0107 79.6781 48.9143 78.504 50.0884C77.3299 51.2625 75.4263 51.2625 74.2523 50.0884ZM67.166 57.1747C65.9919 56.0006 65.9919 54.097 67.166 52.9229C68.34 51.7488 70.2436 51.7488 71.4177 52.9229C72.5918 54.097 72.5918 56.0006 71.4177 57.1747C70.2436 58.3488 68.34 58.3488 67.166 57.1747ZM82.0472 56.466C81.2645 55.6833 81.2645 54.4142 82.0472 53.6315C82.8299 52.8488 84.099 52.8488 84.8817 53.6315C85.6644 54.4142 85.6644 55.6833 84.8817 56.466C84.099 57.2488 82.8299 57.2488 82.0472 56.466ZM74.9609 63.5523C74.1782 62.7696 74.1782 61.5005 74.9609 60.7178C75.7436 59.9351 77.0127 59.9351 77.7954 60.7178C78.5781 61.5005 78.5781 62.7696 77.7954 63.5523C77.0127 64.3351 75.7436 64.3351 74.9609 63.5523ZM59.371 50.797C57.8056 49.2315 57.8056 46.6934 59.371 45.1279C60.9365 43.5625 63.4746 43.5625 65.0401 45.1279C66.6055 46.6934 66.6055 49.2315 65.0401 50.797C63.4746 52.3625 60.9365 52.3625 59.371 50.797ZM59.371 36.6244C57.8056 35.0589 57.8056 32.5208 59.371 30.9553C60.9365 29.3899 63.4746 29.3899 65.0401 30.9553C66.6055 32.5208 66.6055 35.0589 65.0401 36.6244C63.4746 38.1898 60.9365 38.1898 59.371 36.6244ZM52.2847 43.7107C50.7193 42.1452 50.7193 39.6071 52.2847 38.0416C53.8502 36.4762 56.3883 36.4762 57.9538 38.0416C59.5192 39.6071 59.5192 42.1452 57.9538 43.7107C56.3883 45.2762 53.8502 45.2762 52.2847 43.7107ZM38.0462 43.7107C36.4808 42.1452 36.4808 39.6071 38.0462 38.0416C39.6117 36.4762 42.1498 36.4762 43.7153 38.0416C45.2807 39.6071 45.2807 42.1452 43.7153 43.7107C42.1498 45.2762 39.6117 45.2762 38.0462 43.7107ZM24.5823 57.1747C23.4082 56.0006 23.4082 54.097 24.5823 52.9229C25.7564 51.7488 27.66 51.7488 28.8341 52.9229C30.0081 54.097 30.0081 56.0006 28.8341 57.1747C27.66 58.3488 25.7564 58.3488 24.5823 57.1747ZM45.8412 50.0884C44.6671 48.9143 44.6671 47.0107 45.8412 45.8366C47.0153 44.6625 48.9189 44.6625 50.093 45.8366C51.2671 47.0107 51.2671 48.9143 50.093 50.0884C48.9189 51.2625 47.0153 51.2625 45.8412 50.0884ZM38.7549 57.1747C37.5808 56.0006 37.5808 54.097 38.7549 52.9229C39.929 51.7488 41.8326 51.7488 43.0067 52.9229C44.1807 54.097 44.1807 56.0006 43.0067 57.1747C41.8326 58.3488 39.929 58.3488 38.7549 57.1747ZM11.1183 56.466C10.3356 55.6833 10.3356 54.4142 11.1183 53.6315C11.901 52.8488 13.1701 52.8488 13.9528 53.6315C14.7356 54.4142 14.7356 55.6833 13.9528 56.466C13.1701 57.2488 11.901 57.2488 11.1183 56.466ZM18.2046 63.5523C17.4219 62.7696 17.4219 61.5005 18.2046 60.7178C18.9873 59.9351 20.2564 59.9351 21.0391 60.7178C21.8219 61.5005 21.8219 62.7696 21.0391 63.5523C20.2564 64.3351 18.9873 64.3351 18.2046 63.5523ZM46.5498 63.5523C45.7671 62.7696 45.7671 61.5005 46.5498 60.7178C47.3325 59.9351 48.6016 59.9351 49.3843 60.7178C50.1671 61.5005 50.1671 62.7696 49.3843 63.5523C48.6016 64.3351 47.3325 64.3351 46.5498 63.5523ZM17.496 50.0884C16.3219 48.9143 16.3219 47.0107 17.496 45.8366C18.6701 44.6625 20.5737 44.6625 21.7478 45.8366C22.9218 47.0107 22.9218 48.9143 21.7478 50.0884C20.5737 51.2625 18.6701 51.2625 17.496 50.0884ZM30.9599 50.797C29.3945 49.2315 29.3945 46.6934 30.9599 45.1279C32.5254 43.5625 35.0635 43.5625 36.629 45.1279C38.1944 46.6934 38.1944 49.2315 36.629 50.797C35.0635 52.3625 32.5254 52.3625 30.9599 50.797ZM30.9599 36.6244C29.3945 35.0589 29.3945 32.5208 30.9599 30.9553C32.5254 29.3899 35.0635 29.3899 36.629 30.9553C38.1944 32.5208 38.1944 35.0589 36.629 36.6244C35.0635 38.1898 32.5254 38.1898 30.9599 36.6244ZM23.8736 43.7107C22.3082 42.1452 22.3082 39.6071 23.8736 38.0416C25.4391 36.4762 27.9772 36.4762 29.5427 38.0416C31.1081 39.6071 31.1081 42.1452 29.5427 43.7107C27.9772 45.2762 25.4391 45.2762 23.8736 43.7107Z"
+                                  fill="#1D222A"></path>
+                          </svg>
+                      </div>
+                      <div class="main-innner-div">
+                          <p class="wallet-name"> TokenWallet</p>
+                          <svg viewBox="0 0 96 96" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <circle cx="48" cy="48" r="48" fill="white"></circle>
+                              <path
+                                  d="M44.3288 35.3546V21.7134H19.0926C18.581 21.7134 18.24 22.0544 18.24 22.566V41.8342C18.24 42.3457 18.581 42.6867 19.0926 42.6867H28.8119V77.8129C28.8119 78.3244 29.153 78.6654 29.6645 78.6654H45.5224C46.0339 78.6654 46.375 78.3244 46.375 77.8129V35.3546H44.3288Z"
+                                  fill="#29AEFF"></path>
+                              <path
+                                  d="M61.8919 17.2798H55.7534H39.2134C38.7019 17.2798 38.3608 17.6208 38.3608 18.1324V73.3792C38.3608 73.8908 38.7019 74.2318 39.2134 74.2318H55.0713C55.5829 74.2318 55.9239 73.8908 55.9239 73.3792V59.397H62.0624C73.6575 59.397 83.0358 50.0187 83.0358 38.4237C83.0358 26.6581 73.487 17.2798 61.8919 17.2798Z"
+                                  fill="#2761E7"></path>
+                          </svg>
+                      </div>
+                      <div class="main-innner-div">
+                          <p class="wallet-name"> WalletConnect</p>
+                          <svg viewBox="0 0 96 96" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <path
+                                  d="M96 48C96 21.4903 74.5097 0 48 0C21.4903 0 0 21.4903 0 48C0 74.5097 21.4903 96 48 96C74.5097 96 96 74.5097 96 48Z"
+                                  fill="#3389FB"></path>
+                              <path
+                                  d="M29.6927 35.4245C39.8036 25.5252 56.1965 25.5252 66.3074 35.4245L67.5242 36.6159C68.0298 37.1109 68.0298 37.9134 67.5242 38.4084L63.3616 42.4839C63.1088 42.7314 62.699 42.7314 62.4462 42.4839L60.7717 40.8444C53.7181 33.9384 42.282 33.9384 35.2284 40.8444L33.4351 42.6002C33.1823 42.8477 32.7725 42.8477 32.5197 42.6002L28.3571 38.5247C27.8515 38.0297 27.8515 37.2272 28.3571 36.7322L29.6927 35.4245ZM74.9161 43.8532L78.6208 47.4805C79.1264 47.9755 79.1264 48.778 78.6208 49.2729L61.9159 65.6288C61.4103 66.1237 60.5907 66.1237 60.0851 65.6288C60.0851 65.6288 60.0851 65.6288 60.0851 65.6288L48.229 54.0206C48.1026 53.8968 47.8977 53.8968 47.7713 54.0206C47.7713 54.0206 47.7713 54.0206 47.7713 54.0206L35.9153 65.6288C35.4098 66.1237 34.5902 66.1237 34.0846 65.6288C34.0846 65.6288 34.0846 65.6288 34.0846 65.6288L17.3792 49.2727C16.8736 48.7778 16.8736 47.9753 17.3792 47.4803L21.0839 43.853C21.5895 43.3581 22.4091 43.3581 22.9146 43.853L34.771 55.4614C34.8974 55.5851 35.1023 55.5851 35.2287 55.4614C35.2287 55.4614 35.2287 55.4614 35.2287 55.4614L47.0844 43.853C47.59 43.358 48.4096 43.358 48.9152 43.853C48.9152 43.853 48.9152 43.853 48.9152 43.853L60.7715 55.4614C60.8979 55.5851 61.1028 55.5851 61.2292 55.4614L73.0854 43.8532C73.5909 43.3583 74.4105 43.3583 74.9161 43.8532Z"
+                                  fill="white"></path>
+                          </svg>
+                      </div>
+  
+                      <div class="main-innner-div">
+                          <p class="wallet-name">Binance Chain Wallet</p>
+                          <svg viewBox="0 0 32 32" width="32px" color="text" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ iksKBI">
+                              <path
+                                  d="M24 0H8C3.58172 0 0 3.58172 0 8V24C0 28.4183 3.58172 32 8 32H24C28.4183 32 32 28.4183 32 24V8C32 3.58172 28.4183 0 24 0Z"
+                                  fill="#1E2026"></path>
+                              <path
+                                  d="M16.2857 4L9.97035 7.6761L12.2922 9.03415L16.2857 6.7161L20.2792 9.03415L22.6011 7.6761L16.2857 4Z"
+                                  fill="#F0B90B"></path>
+                              <path
+                                  d="M20.2792 10.9541L22.6011 12.3122V15.0283L18.6075 17.3463V21.9824L16.2857 23.3405L13.9639 21.9824V17.3463L9.97035 15.0283V12.3122L12.2922 10.9541L16.2857 13.2722L20.2792 10.9541Z"
+                                  fill="#F0B90B"></path>
+                              <path d="M22.6011 16.9483V19.6644L20.2792 21.0224V18.3063L22.6011 16.9483Z" fill="#F0B90B">
+                              </path>
+                              <path
+                                  d="M20.2561 22.9424L24.2496 20.6244V15.9883L26.5714 14.6302V21.9824L20.2561 25.6585V22.9424Z"
+                                  fill="#F0B90B"></path>
+                              <path
+                                  d="M24.2496 11.3522L21.9278 9.99414L24.2496 8.63609L26.5714 9.99414V12.7102L24.2496 14.0683V11.3522Z"
+                                  fill="#F0B90B"></path>
+                              <path
+                                  d="M13.9639 26.642V23.9259L16.2857 25.2839L18.6075 23.9259V26.642L16.2857 28L13.9639 26.642Z"
+                                  fill="#F0B90B"></path>
+                              <path d="M12.2922 21.0224L9.97035 19.6644V16.9483L12.2922 18.3063V21.0224Z" fill="#F0B90B">
+                              </path>
+                              <path d="M16.2857 11.3522L13.9639 9.99414L16.2857 8.63609L18.6075 9.99414L16.2857 11.3522Z"
+                                  fill="#F0B90B"></path>
+                              <path
+                                  d="M10.6437 9.99414L8.32183 11.3522V14.0683L6 12.7102V9.99414L8.32183 8.63609L10.6437 9.99414Z"
+                                  fill="#F0B90B"></path>
+                              <path d="M6 14.6302L8.32183 15.9883V20.6244L12.3154 22.9424V25.6585L6 21.9824V14.6302Z"
+                                  fill="#F0B90B"></path>
+                          </svg>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <div class="iRgiNB">
+                          <svg viewBox="0 0 20 20" color="primary" width="20px" xmlns="http://www.w3.org/2000/svg"
+                              class="sc-bdfBwQ eqGTQP">
+                              <path
+                                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM9 14H11V16H9V14ZM10.61 4.04C8.55 3.74 6.73 5.01 6.18 6.83C6 7.41 6.44 8 7.05 8H7.25C7.66 8 7.99 7.71 8.13 7.33C8.45 6.44 9.4 5.83 10.43 6.05C11.38 6.25 12.08 7.18 12 8.15C11.9 9.49 10.38 9.78 9.55 11.03C9.55 11.04 9.54 11.04 9.54 11.05C9.53 11.07 9.52 11.08 9.51 11.1C9.42 11.25 9.33 11.42 9.26 11.6C9.25 11.63 9.23 11.65 9.22 11.68C9.21 11.7 9.21 11.72 9.2 11.75C9.08 12.09 9 12.5 9 13H11C11 12.58 11.11 12.23 11.28 11.93C11.3 11.9 11.31 11.87 11.33 11.84C11.41 11.7 11.51 11.57 11.61 11.45C11.62 11.44 11.63 11.42 11.64 11.41C11.74 11.29 11.85 11.18 11.97 11.07C12.93 10.16 14.23 9.42 13.96 7.51C13.72 5.77 12.35 4.3 10.61 4.04Z">
+                              </path>
+                          </svg>
+                          <a target="_blank">
+                              Learn how to connect
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        $("#showPanel").click(function () {
+            $("#panel").show();
+        });
+
+        $("#hidePanel").click(function () {
+            $("#panel").hide();
+        });
+
+    });
+
+    // Toogle Design
+    // Get all tabs
+    var tabs_items = document.querySelectorAll(".tabs");
+
+    // Loop through all tabs
+    tabs_items.forEach(function (tabs) {
+        // Set variable
+        var controls = tabs.querySelector(".tabs__control");
+        var tab = controls.querySelectorAll(".tabs__tab");
+        var contents = tabs.querySelector(".tabs__contents");
+        var content = contents.querySelectorAll(".tabs__content");
+
+        // Loop through all tabs
+        tab.forEach(function (item) {
+            item.onclick = function (e) {
+                e.preventDefault();
+
+                // Get clicked tab ID
+                var tabId = item.dataset.tab;
+
+                // Set current tab
+                tab.forEach(function (item) {
+                    if (tabId == item.dataset.tab) {
+                        item.classList.add("tabs__tab--current");
+                        item.setAttribute('aria-selected', 'true');
+                        item.removeAttribute('tabindex', '-1');
+                    } else {
+                        item.classList.remove("tabs__tab--current");
+                        item.setAttribute('aria-selected', 'false');
+                        item.setAttribute('tabindex', '-1');
+                    }
+                });
+
+                // Set current content
+                content.forEach(function (item) {
+                    if (tabId == item.dataset.tabContent) {
+                        item.classList.add("tabs__content--current");
+                        item.removeAttribute('hidden', 'hidden');
+                    } else {
+                        item.classList.remove("tabs__content--current");
+                        item.setAttribute('hidden', 'hidden');
+                    }
+                });
+            };
+        });
+    });
+
+    // 
+
+
+</script>
+
+
+</html>

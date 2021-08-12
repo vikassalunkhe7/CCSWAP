@@ -1,0 +1,466 @@
+.gdlclw {
+    position: relative;
+    max-width: 436px;
+    width: 100%;
+    z-index: 5;
+}
+
+.LPUdS {
+    background-color: rgb(255, 255, 255);
+    border-radius: 32px;
+    box-shadow: rgb(0, 0, 0) 0px 2px 12px -8px, rgb(0, 0, 0) 0px 2px 12px -8px;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    position: relative;
+}
+.jOcitS {
+    position: relative;
+}
+
+.LPUdS {
+    background-color: rgb(255, 255, 255);
+    border-radius: 32px;
+    box-shadow:  rgb(0, 0, 0) 0px 2px 12px -8px, rgb(0, 0, 0) 0px 2px 12px -8px;
+    color: rgb(0, 0, 0);
+    overflow: hidden;
+    position: relative;
+}
+
+.cqvrXa {
+    border-bottom: 1px solid rgb(233, 234, 235);
+    padding: 24px;
+}
+
+.kZklEQ {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.fpDRn {
+    flex: 1 1 0%;
+}
+
+.lnUPhx {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.gbauEu {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.hYCJHo {
+    color: rgb(135, 76, 41);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.fwjcww {
+    padding: 0px;
+    width: 48px;
+}
+
+.EiCqv {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: none;
+    color: rgb(135, 76, 41);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    width: max-content;
+    height: 48px;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: 0px;
+    padding: 0px 24px;
+    transition: background-color 0.2s ease 0s;
+    opacity: 1;
+}
+
+.fwjcww {
+    padding: 0px;
+    width: 48px;
+}
+
+.EiCqv {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: transparent;
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: none;
+    color: rgb(135, 76, 41);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    width: max-content;
+    height: 48px;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: 0px;
+    padding: 0px 24px;
+    transition: background-color 0.2s ease 0s;
+    opacity: 1;
+}
+
+.ezBjmy {
+    padding: 24px;
+}
+
+.hMtXtc {
+    display: grid;
+    grid-auto-rows: auto;
+    row-gap: 12px;
+}
+.NDJuC {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    border-radius: 20px;
+    background-color: rgb(235, 235, 235);
+    z-index: 1;
+}
+
+.krKWzU {
+    border-radius: 16px;
+    background-color: rgb(218, 227, 230);
+    box-shadow: rgb(74 74 104 / 10%) 0px 2px 2px -1px inset;
+}
+
+.huKpkw {
+    display: flex;
+    flex-flow: row nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.75rem 1rem 0px;
+}
+
+.kHEClt {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.fLfbpJ {
+    width: 100%;
+    display: flex;
+    padding: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.eJEsCB {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+}
+
+.hEujpL {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.bHLdTZ {
+    display: flex;
+    flex-flow: row nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+}
+
+.hdLlPN {
+    color: rgb(0, 0, 0);
+    width: 0px;
+    position: relative;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    flex: 1 1 auto;
+    background-color: transparent;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px;
+    appearance: textfield;
+}
+
+.hgDKwp {
+    -webkit-box-align: center;
+    align-items: center;
+    height: 34px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border-radius: 12px;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    padding: 0px 0.5rem;
+}
+
+.iONwHy {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.kUFaZj {
+    width: 24px;
+    height: 24px;
+    box-shadow: rgb(0 0 0 / 8%) 0px 6px 10px;
+    border-radius: 24px;
+}
+
+.jqZDWZ {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.iksKBI {
+    fill: rgb(0, 0, 0);
+    flex-shrink: 0;
+}
+
+.WypEE {
+    display: grid;
+    grid-auto-rows: auto;
+}
+
+.ILfeX {
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+
+.fLfbpJ {
+    width: 100%;
+    display: flex;
+    padding: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.eJEsCB {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+}
+
+.jyABpM {
+    padding: 2px;
+}
+
+.fwjcqd {
+    padding: 0px;
+    width: 32px;
+}
+
+
+.hqwVrv {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(239, 244, 245);
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: none;
+    color: rgb(135, 76, 41);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    width: max-content;
+    height: 32px;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: 0px;
+    padding: 0px 16px;
+    transition: background-color 0.2s ease 0s;
+    opacity: 1;
+}
+
+.NDJuC {
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    border-radius: 20px;
+    background-color: rgb(235, 235, 235);
+    z-index: 1;
+}
+
+.krKWzU {
+    border-radius: 16px;
+    background-color: rgb(218, 227, 230);
+    box-shadow: rgb(74 74 104 / 10%) 0px 2px 2px -1px inset;
+}
+
+.huKpkw {
+    display: flex;
+    flex-flow: row nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.75rem 1rem 0px;
+}
+
+.kHEClt {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.fLfbpJ {
+    width: 100%;
+    display: flex;
+    padding: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.eJEsCB {
+    box-sizing: border-box;
+    margin: 0px;
+    min-width: 0px;
+}
+
+.hEujpL {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.bHLdTZ {
+    display: flex;
+    flex-flow: row nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0.75rem 0.75rem 0.75rem 1rem;
+}
+
+.hdLlPN {
+    color: rgb(0, 0, 0);
+    width: 0px;
+    position: relative;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    flex: 1 1 auto;
+    background-color: transparent;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px;
+    appearance: textfield;
+}
+
+.eKSWDJ {
+    -webkit-box-align: center;
+    align-items: center;
+    height: 34px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border-radius: 12px;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    padding: 0px 0.5rem;
+}
+
+.iONwHy {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.jqZDWZ {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.iksKBI {
+    fill: rgb(0, 0, 0);
+    flex-shrink: 0;
+}
+
+.ezkaCf {
+    width: 100%;
+    padding: 0.25rem 0.75rem 0px;
+    border-radius: 20px;
+}
+
+.kAkSNn {
+    display: grid;
+    grid-auto-rows: auto;
+    row-gap: 4px;
+}
+
+.hyACfo {
+    margin-top: 1rem;
+}
+
+.bvZeQR {
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(135, 76, 41);
+    border: 0px;
+    border-radius: 16px;
+    box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px inset;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 48px;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    -webkit-box-pack: center;
+    justify-content: center;
+    outline: 0px;
+    padding: 0px 24px;
+    transition: background-color 0.2s ease 0s;
+    opacity: 1;
+}
